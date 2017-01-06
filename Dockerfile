@@ -2,7 +2,7 @@ FROM fedora:21
 
 MAINTAINER Mikulas Dite <mikulas@mangoweb.cz>
 
-ENV shellcheckTag v0.4.4
+ENV shellcheckVersion 0.4.4
 
 RUN useradd shellcheck \
     && yum install --setopt=tsflags=nodocs --nogpgcheck --assumeyes --quiet \
@@ -14,10 +14,10 @@ RUN useradd shellcheck \
 USER shellcheck
 
 RUN cabal update \
-    && curl -Lso /tmp/shellcheck-$shellcheckTag.tar.gz https://github.com/koalaman/shellcheck/archive/$shellcheckTag.tar.gz \
-    && tar zxf /tmp/shellcheck-$shellcheckTag.tar.gz -C /tmp/ \
-    && rm /tmp/shellcheck-$shellcheckTag.tar.gz \
-    && cabal install /tmp/shellcheck-$shellcheckTag
+    && curl -Lso /tmp/shellcheck-$shellcheckVersion.tar.gz https://github.com/koalaman/shellcheck/archive/v$shellcheckVersion.tar.gz \
+    && tar zxf /tmp/shellcheck-$shellcheckVersion.tar.gz -C /tmp/ \
+    && rm /tmp/shellcheck-$shellcheckVersion.tar.gz \
+    && cabal install /tmp/shellcheck-$shellcheckVersion
 
 ENTRYPOINT ["/home/shellcheck/.cabal/bin/shellcheck"]
 CMD ["-s", "bash", "*.sh"]
