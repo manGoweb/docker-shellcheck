@@ -1,4 +1,4 @@
-_: build
+_: build tag push
 
 IMAGE := shellcheck
 
@@ -7,6 +7,7 @@ build:
 
 tag:
 	docker tag ${IMAGE}:latest mangoweb/${IMAGE}:latest
+
 push:
 	docker push mangoweb/${IMAGE}:latest
 
