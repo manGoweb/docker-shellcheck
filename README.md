@@ -28,7 +28,9 @@ v1.0
 ## Launch Command
 
 ```bash
-docker run -v LocalBashScriptLocation:/tmp/FileToBeChecked chrisdaish/shellcheck
+docker run -it --rm --name my_check \
+  -v "$PWD":/usr/src -w /usr/src \
+  chrisdaish/shellcheck:latest FILE_A.sh FILE_B.sh
 ```
 
 ## Sources

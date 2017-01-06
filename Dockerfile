@@ -19,4 +19,5 @@ RUN cabal update \
     && rm /tmp/shellcheck-$shellcheckTag.tar.gz \
     && cabal install /tmp/shellcheck-$shellcheckVersion
 
-CMD ["/home/shellcheck/.cabal/bin/shellcheck", "-s", "bash", "/tmp/FileToBeChecked"]
+ENTRYPOINT ["/home/shellcheck/.cabal/bin/shellcheck"]
+CMD ["-s", "bash", "*.sh"]
