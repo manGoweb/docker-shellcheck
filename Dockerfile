@@ -34,5 +34,7 @@ RUN export PATH="/root/.cabal/bin:$PATH" \
      && cabal update \
      && cabal install /tmp/shellcheck-$shellcheckVersion
 
-ENTRYPOINT ["/root/.cabal/bin/shellcheck"]
+ADD wrapper.sh /usr/bin/shellcheck
+
+ENTRYPOINT ["/usr/bin/shellcheck"]
 CMD ["-s", "bash", "*.sh"]
