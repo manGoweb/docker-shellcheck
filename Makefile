@@ -3,7 +3,7 @@ _: build tag push
 IMAGE := shellcheck
 
 build:
-	docker build -t ${IMAGE} .
+	docker build --no-cache=false -t ${IMAGE} .
 
 tag:
 	docker tag ${IMAGE}:latest mangoweb/${IMAGE}:latest
